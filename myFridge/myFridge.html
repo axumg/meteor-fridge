@@ -5,19 +5,7 @@
 
 <body>
   {{> container}}
-  <template name="fridge">
-    <div id="fridge">
-      <img class="image-responsive" src="/empty-fridge.jpg" />
-      <ul>
-        {{#each products}}
-          <li>{{> productListItem}}</li>
-        {{/each}}
-      </ul>
-    </div>
-  </template>
-  
-  
-</body>
+  </body>
 
 <template name="container">
   <div class="container">
@@ -42,8 +30,7 @@
 </template>
 
 <template name="productList">
-  <div id="supermarket" class="box">
-    
+  <div id="supermarket" class="box">    
     <ul id="products">
       {{#each products}}
         <li>{{> productListItem}}</li>

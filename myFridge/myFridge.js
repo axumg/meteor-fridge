@@ -1,12 +1,10 @@
 Products = new Mongo.Collection('products');
-Products.insert({img: '/bread.png', name: 'Bread', place: 'fridge'});
-Products.find({place: 'fridge'});
+//Products.insert({img: '/bread.png', name: 'Bread', place: 'fridge'});
+//Products.find({place: 'fridge'});
 //Products.findOne({_id: 'X6Qw8v3ChcsZKaKan'});
 
 if (Meteor.isClient) {
-  // counter starts at 0
-  //Session.setDefault('counter', 0);
-  Template.fridge.helpers({
+   Template.fridge.helpers({
     products: function() {
       return Products.find({
         place:'fridge'
@@ -14,12 +12,7 @@ if (Meteor.isClient) {
     }
   })
 
-  //Template.fridge.helpers({
-  //  products: function(){
-  //    return [];
-  //  }
-  //});
-  
+    
   Template.productList.helpers({
     products: function () {
       return Products.find({
@@ -45,7 +38,9 @@ if (Meteor.isClient) {
   
   templateInstance.$('#supermarket').droppable({
     drop: function(evt,ui) {
-      var query = {_id: ui.draggable.data('id') };
+      var query = {
+        _id: ui.draggable.data('id')
+      };
       var changes = { $set: { place: 'supermarket' } };
       Products.update(query, changes);
     }
@@ -69,17 +64,17 @@ if (Meteor.isServer) {
     
     Products.insert({
       name: 'Milk', img: '/milk.png', place: 'fridge'
-    });
-    Products.insert({
-      name: 'Bread', img: '/bread.png', place: 'fridge'
-    });
-    
-    Products.insert({
-    name: 'Banana', img: '/banana.png', place: 'fridge'
-    });
-    
+    });    
     Products.insert({
     name: 'juice', img: '/juice.png', place: 'fridge'
     });
+    Products.insert({
+      name: 'Bread', img: '/bread.png', place: 'supermarket'
+    });    
+    Products.insert({
+    name: 'Banana', img: '/banana.png', place: 'supermarket'
+    });
+    
+    
   });
 }
